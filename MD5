@@ -1,11 +1,11 @@
-89c87980cc129a8190b1be1dc18410f5 *DESCRIPTION
+0ded49397c2d77a159445590c8afaaeb *DESCRIPTION
 7db9172f304c52178ebd74abcf4cd953 *NAMESPACE
-c55aadb79986db266f0004e6b1c72419 *R/BootstrapQTL.R
+cb69e58f7bac9f8f6be975435c0764b6 *R/BootstrapQTL.R
 c4ed471e452926748843b0beb805617f *R/mult_test.R
-bc5494f13e39d204c63f76edc22a9c8e *R/utils.R
+62a926b2d5364fbe9b1651ce9e133ca1 *R/utils.R
 30bc76b276cd069521bef3ba9c7559d4 *R/winners_curse.R
 3a8bac3bf69b412455485864d6bfa6d4 *README.md
 11fd375dc1f9f78ddd95492464f5dfe0 *inst/CITATION
 7819443d611f939fb85f2922f74a47b5 *man/BootstrapQTL.Rd
 3b89f53b26a9e0de47adde0cec8578d1 *tests/testthat.R
-0abaf23ee84c4d259f906172f1cc8490 *tests/testthat/test.R
+af5b748e16def5250eb41cc77abbe818 *tests/testthat/test.R

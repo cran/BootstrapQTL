@@ -44,15 +44,36 @@ test_that("Run BootstrapQTL", {
 
   outfile <- tempfile()
   outdir <- tempdir()
-  eQTLs <- BootstrapQTL(snps, gene, snpspos, genepos, cvrt, n_bootstraps=10, n_cores=2,
-                        eGene_detection_file_name = outfile,
-                        bootstrap_file_directory = outdir)
-  unlink(outfile)
-  unlink(outdir, recursive=TRUE)
+  tryCatch({
+    eQTLs <- BootstrapQTL(snps, gene, snpspos, genepos, cvrt, n_bootstraps=10,
+                          eGene_detection_file_name = outfile,
+                          bootstrap_file_directory = outdir)
+  }, warning=function(w) {
+    # ignore unavoidable failed bootstraps due to small sample size in example data
+    if(!(grepl("covariates exceeds the number of samples", w) ||
+         grepl("Colinear or zero covariates detected", w))) {
+      warning(w)
+    }
+  })
 
-  eQTLs <- BootstrapQTL(snps, gene, snpspos, genepos, cvrt, n_bootstraps=10, n_cores=2)
-  
   eQTLs <- BootstrapQTL(snps, gene, snpspos, genepos, cvrt, n_bootstraps=0)
+
+  tryCatch({
+    eQTLs <- BootstrapQTL(snps, gene, snpspos, genepos, cvrt, n_bootstraps=10, n_cores=2)
+  }, warning=function(w) {
+    # ignore unavoidable failed bootstraps due to small sample size in example data
+    if(!(grepl("covariates exceeds the number of samples", w) ||
+         grepl("Colinear or zero covariates detected", w))) {
+      warning(w)
+    }
+  }, error=function(e) {
+    # Sometimes parallel::makeCluster() fails - problematic when occurs on CRAN servers
+    if (!grepl("cannot open the connection", e)) {
+      stop(e)
+    }
+  })
+
+  unlink(list.files(path=tempdir()))
 })
 
 
